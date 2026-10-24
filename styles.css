@@ -1,0 +1,183 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* 야간 자율학습 / 독서실 다크 모드 기본 테마 */
+body.dark-mode {
+  background-color: #0b0f19;
+  color: #e2e8f0;
+}
+
+body.light-mode {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* 독서실 눈 보호(웜 나이트 케어) 필터 활성화 시 */
+body.eye-care-filter::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 166, 43, 0.055);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+body.dark-mode.eye-care-filter::after {
+  background: rgba(251, 191, 36, 0.045);
+  mix-blend-mode: screen;
+}
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.light-mode ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.light-mode ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+/* KaTeX 수식 스타일 최적화 */
+.katex {
+  font-size: 1.06em !important;
+}
+
+.katex-display {
+  margin: 0.75em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.35rem 0;
+}
+
+.math-render-container {
+  line-height: 1.75;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 글래스모피즘 및 카드 효과 */
+.study-card-dark {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.92), rgba(15, 23, 42, 0.85));
+  border: 1px solid rgba(51, 65, 85, 0.65);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+}
+
+.study-card-dark:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.study-card-light {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px -2px rgba(15, 23, 42, 0.05);
+}
+
+.study-card-light:hover {
+  border-color: #818cf8;
+}
+
+/* 애니메이션 */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.99);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up-fade 0.25s ease-out forwards;
+}
+
+/* 수식 툴바 가로 스크롤 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 시험지 모드 인쇄(Print / PDF) 전용 스타일 */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, nav, footer, .no-print {
+    display: none !important;
+  }
+  .print-page {
+    page-break-after: auto;
+    color: #000000 !important;
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .print-box {
+    border: 1px solid #94a3b8 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+  .katex {
+    color: #000000 !important;
+  }
+}
